@@ -6,11 +6,11 @@ RUN apk add --no-cache ca-certificates && \
 ADD . /app
 WORKDIR /app
 
-RUN CGO_ENABLED=0 go build -a -ldflags="-s -w" -installsuffix cgo
+RUN CGO_ENABLED=0 go build -a -ldflags="-s -w" -installsuffix cgo -o app
 
 FROM scratch
 
-COPY --from=build /app/irc-bot-template /irc-bot-template
+COPY --from=build /app/app /app
 COPY --from=build /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
-CMD ["/irc-bot-template"]
+CMD ["/app"]
