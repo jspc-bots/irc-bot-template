@@ -1,4 +1,4 @@
-module github.com/jspc/irc-bot-template
+module github.com/jspc-bot/irc-bot-template
 
 go 1.16
 
